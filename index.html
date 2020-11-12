@@ -12,14 +12,14 @@
 
     <div id="react-container"></div>
     <script type="text/babel">
-class MyComponent extends React.Component{
-    render(){
+
+    const MyComponent = () => {
         return <div>
             <h1> Hello World </h1>
             <p>welcome to first React Component</p>
             </div>
     }
-}
+
 
 ReactDOM.render(<MyComponent />, document.getElementById('react-container') )
     </script>
