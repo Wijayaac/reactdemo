@@ -1,29 +1,48 @@
-// before es6
-function Person(id, firstName, lastName) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-}
-
-Person.prototype.getFullName = function () {
-    return this.firstName + " " +this.lastName;
-}
-
-var wijaya = new Person("1", "Wijaya", "Ac");
-console.log(wijaya.getFullName());
-
-// es 6
-class PersonEs{
-    constructor(id,firstName,lastName) {
-        this.id = id;
-        this.firstName=firstName;
-        this.lastName=lastName; 
+class Header extends React.Component {
+    constructor(props) {
+        super(props);
     }
-
-    getFullName(){
-        return `${this.firstName} ${this.lastName}`
+    render() {
+        return (
+            <div>
+                <h1>{this.props.title}</h1>
+                <span>{this.props.subTitle}</span>
+            </div>
+        );
     }
 }
+class Container extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (
+            <div>
+                <p> Welcome to Our Tutorial</p>
+                <p> Free Tutorial Coursee</p>
+            </div>);
+    }
+}
+class Footer extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    render() {
+        return (<span> copyright by wijaya</span>);
+    }
+}
+class Page extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (
+            <div>
+                <Header title="Kadek Wijaya" subTitle="Tutorial React" />
+                <Container />
+                <Footer />
+            </div>);
+    }
+}
 
-let kadek = new PersonEs("id", "Kadek", "Wijaya")
-console.log(kadek.getFullName())
+ReactDOM.render(<Page />, document.getElementById("root"));

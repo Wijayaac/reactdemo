@@ -4,56 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello React</title>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script  src="react.development.js"></script>
+    <script  src="react-dom.development.js"></script>
+    <script type="text/babel" src="index.js"></script>
 
-    <style>
-        .note {
-            width: 250px;
-            height: 150px;
-            background-color: yellow;
-            padding: 15px;
-            border: 1px solid orangered;
-            box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.2);
-        }
-    </style>
 
 </head>
 <body>
 
-    <div id="react-container"></div>
-    <script type="text/babel">
-class CheckBox extends React.Component{
+    <div id="root">
 
-constructor(props){
-    super(props);
-    this.state ={
-        checked: false
-    }
-}
-
-onChangeHandle = () => {
-    this.setState({checked: !this.state.checked})
-}
-    render(){
-var message;
-if (this.state.checked) {
-    message = "Checked"
-}else{
-    message = "unchecked"
-}
-
-        return(
-            <div>
-            <input type="checkbox" onChange={this.onChangeHandle}/>
-            <p> The Box is {message}</p>
-            </div>
-        )
-    }
-}
-
-ReactDOM.render(<CheckBox/>, document.getElementById('react-container'))
-    </script>
+    </div>
 </body>
 </html>
