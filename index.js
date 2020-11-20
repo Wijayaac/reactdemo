@@ -1,44 +1,48 @@
-class Parent extends React.Component {
+class Person {
+    constructor(name) {
+        this.name = name;
+
+    }
+    getName() {
+        return this.name;
+    }
+}
+
+class Page extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: 0
+            name: "",
+            persons: []
         }
-        this.handleClick = this.handleClick.bind(this);
+        this._handleChange = this._handleChange.bind(this);
+        this._handleSubmit = this._handleSubmit.bind(this);
     }
-    handleClick() {
-        let { data } = this.state;
-        data++;
-        this.setState({ data: data });
+    _handleChange(e) {
+        this.setState({ name: e.target.value });
     }
+    _handleSubmit(e) {
+        let { name, persons } = this.state;
+        persons.push(new Person(name));
+        this.setState({ persons: persons, name: "" })
+        e.preventDefault();
 
-
+    }
     render() {
         return (
             <div>
-                <h1>React JS Child event</h1>
-                <Child handleClick={this.handleClick} data={this.state.data} />
+                <form onSubmit={this._handleSubmit}>
+                    <input type="text" name="name" value={this.state.name} onChange={this._handleChange} />
+                    <input type="submit" value="Save" />
+                </form>
+                <ul>
+                    {this.state.persons.map(person => {
+                        return <li>{person.getName()}</li>
+                    })}
+                </ul>
             </div>
         );
     }
 }
 
-class Child extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-    render() {
-        return (
-            <div>
-                <button onClick={this.props.handleClick}>
-                    Click Me
-                 </button>
-                <h2>
-                    {this.props.data}
-                </h2>
-            </div>
-        );
-    }
-}
-
-ReactDOM.render(<Parent />, document.getElementById("root"));
+ReactDOM.render(<Page />, document.getElementById("root"));
