@@ -1,22 +1,44 @@
-class Page extends React.Component {
+class Parent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: ""
+            data: 0
         }
-        this._handleChange = this._handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
-    _handleChange(e) {
-        this.setState({ data: e.target.value });
+    handleClick() {
+        let { data } = this.state;
+        data++;
+        this.setState({ data: data });
     }
+
+
     render() {
         return (
             <div>
-                <input type="text" onChange={this._handleChange}></input>
-                <h2>{this.state.data}</h2>
+                <h1>React JS Child event</h1>
+                <Child handleClick={this.handleClick} data={this.state.data} />
             </div>
         );
     }
 }
 
-ReactDOM.render(<Page />, document.getElementById("root"));
+class Child extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (
+            <div>
+                <button onClick={this.props.handleClick}>
+                    Click Me
+                 </button>
+                <h2>
+                    {this.props.data}
+                </h2>
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(<Parent />, document.getElementById("root"));
